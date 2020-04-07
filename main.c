@@ -10,11 +10,11 @@ int main(int argc, char *argv[], char **env)
 {
 	pid_t child;
 	int fd = 0, cmp = 0, statusPid = 0, i = 0;
-	char *lineArg, pathF;
+	char *lineArg, *pathF;
 	ssize_t carac;
 	char **parse;
 
-	while (true)
+	while (1)
 	{
 		child = fork();
 		if (child == -1)
@@ -28,9 +28,7 @@ int main(int argc, char *argv[], char **env)
 			if (argc == 1)
 			{
 				if (fd != 0)
-				{
 					write(1, "> ", 2);
-				}
 				lineArg = checkLine(&carac);
 				if (carac == EOF)
 				{
@@ -47,10 +45,10 @@ int main(int argc, char *argv[], char **env)
 				cmp = _strCmp(parse[0], "env");
 				if (cmp == 0)
 				{
-					while (*env[i] != NULL)
+					while (env[i] != NULL)
 					{
 						write(1, env[i], _strLen(env[i]));
-						write(1, "\n", 2);
+						write(1, "\n", 1);
 						i++;
 					}
 				}
