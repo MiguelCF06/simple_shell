@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "holberton.h"
 /**
  * checkLine - Function that reads the input
  * @carac: Will be a flag to identify an exit
