@@ -37,34 +37,31 @@ int _strCmp(char *s1, char *s2)
  * strConcat - Concatenates a string.
  * @s1: String 1
  * @s2: String 2
+ * @s3: String 3
  * Return: Null or the array concatenate.
  */
-char *strConcat(char *s1, char *s2)
+char *strConcat(char *s1, char *s2, char *s3)
 {
 	int con1 = 0;
 	int con2 = 0;
+	int con3 = 0;
 	char *conar;
 
 	if (s1 == NULL)
-	{
 		s1 = "";
-	}
-
 	if (s2 == NULL)
-	{
 		s2 = "";
-	}
+	if (s3 == NULL)
+		s3 = "";
 	while (s1[con1] != '\0')
 		con1++;
 	while (s2[con2] != '\0')
 		con2++;
-
-	conar = malloc(sizeof(char) * (con1) + (con2 + 1));
-
+	while (s3[con3] != '\0')
+		con3++;
+	conar = malloc(sizeof(char) * (con1) + (con2) + (con3 + 1));
 	if (conar == NULL)
-	{
 		return (NULL);
-	}
 	for (con1 = 0; s1[con1] != '\0'; con1++)
 	{
 		conar[con1] = s1[con1];
@@ -72,6 +69,10 @@ char *strConcat(char *s1, char *s2)
 	for (con2 = 0; s2[con2] != '\0'; con1++, con2++)
 	{
 		conar[con1] = s2[con2];
+	}
+	for (con3 = 0; s3[con3] != '\0'; con1++, con2++, con3++)
+	{
+		conar[con2] = s3[con3];
 	}
 	conar[con1] = '\0';
 	return (conar);
