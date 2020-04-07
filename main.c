@@ -9,11 +9,8 @@
 int main(int argc, char *argv[], char **env)
 {
 	pid_t child;
-	int fd = 0;
-	int cmp = 0;
-	int statusPid = 0;
-	char *lineArg;
-	char *pathF;
+	int fd = 0, cmp = 0, statusPid = 0, i = 0;
+	char *lineArg, pathF;
 	ssize_t carac;
 	char **parse;
 
@@ -41,7 +38,7 @@ int main(int argc, char *argv[], char **env)
 					write(1, "\n", 2);
 					exit(3);
 				}
-				if (*lineArg == "\n")
+				if (*lineArg == '\n')
 				{
 					free(lineArg);
 					return (0);
@@ -52,7 +49,7 @@ int main(int argc, char *argv[], char **env)
 				{
 					while (*env[i] != NULL)
 					{
-						write(1, *env[i], _strLen(*env[i]));
+						write(1, env[i], _strLen(env[i]));
 						write(1, "\n", 2);
 						i++;
 					}
@@ -64,7 +61,7 @@ int main(int argc, char *argv[], char **env)
 					free(lineArg);
 					exit(3);
 				}
-				pathF = findPath(parse[0], *env);
+				pathF = findPath(parse[0], env);
 				if (execve(pathF, parse, NULL) == -1)
 				{
 					free(pathF);
