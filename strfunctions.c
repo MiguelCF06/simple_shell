@@ -34,18 +34,17 @@ int _strCmp(char *s1, char *s2)
 }
 
 /**
- * strConcat - Concatenates a string.
- * @s1: String 1
- * @s2: String 2
- * @s3: String 3
- * Return: Null or the array concatenate.
+ * strConcat - Concatenate strings
+ * @s1: string 1
+ * @s2: string 2
+ * @s3: string 3
+ * Return: a pointer or NULL
  */
 char *strConcat(char *s1, char *s2, char *s3)
 {
-	int con1 = 0;
-	int con2 = 0;
-	int con3 = 0;
-	char *conar;
+	int i, j, k;
+	int tam1 = 0, tam2 = 0, tam3 = 0;
+	char *dest;
 
 	if (s1 == NULL)
 		s1 = "";
@@ -53,27 +52,31 @@ char *strConcat(char *s1, char *s2, char *s3)
 		s2 = "";
 	if (s3 == NULL)
 		s3 = "";
-	while (s1[con1] != '\0')
-		con1++;
-	while (s2[con2] != '\0')
-		con2++;
-	while (s3[con3] != '\0')
-		con3++;
-	conar = malloc(sizeof(char) * (con1) + (con2) + (con3 + 1));
-	if (conar == NULL)
+	tam1 = _strLen(s1);
+	tam2 = _strLen(s2);
+	tam3 = _strLen(s3);
+
+	dest = malloc((tam1 + tam2 + tam3 + 1));
+
+	if (dest == NULL)
+	{
+		free(dest);
 		return (NULL);
-	for (con1 = 0; s1[con1] != '\0'; con1++)
-	{
-		conar[con1] = s1[con1];
 	}
-	for (con2 = 0; s2[con2] != '\0'; con1++, con2++)
+	else
 	{
-		conar[con1] = s2[con2];
+		for (i = 0; i < tam1; i++)
+		{
+			dest[i] = s1[i];
+		}
+		for (j = 0; j < tam2; j++)
+		{
+			dest[i + j] = s2[j];
+		}
+		for (k = 0; k <= tam3; k++)
+		{
+			dest[i + j + k] = s3[k];
+		}
 	}
-	for (con3 = 0; s3[con3] != '\0'; con1++, con2++, con3++)
-	{
-		conar[con2] = s3[con3];
-	}
-	conar[con1] = '\0';
-	return (conar);
+	return (dest);
 }
