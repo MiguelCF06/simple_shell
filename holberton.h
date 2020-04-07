@@ -8,5 +8,7 @@
 #include <string.h>
 
 int _strLen(char *s);
+int _strCmp(char *s1, char *s2);
+char *strConcat(char *s1, char *s2);
 
 #endif
