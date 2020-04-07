@@ -25,7 +25,7 @@ char **parseString(char *lineArg, char *separator)
 	int i = 0;
 	int c = 0;
 
-	c = _strlen(lineArg);
+	c = _strLen(lineArg);
 	token = malloc(sizeof(char *) * c);
 	if (token == NULL)
 		return (NULL);
