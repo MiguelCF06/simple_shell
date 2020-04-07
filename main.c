@@ -1,10 +1,17 @@
 #include "holberton.h"
-
+/**
+ * main - Entry point
+ * @argc: argument count
+ * @argv: Argument vector contains the arguments passed to the program
+ * @env: Environment variable
+ * Return: Always 0 (Success) and exit
+ */
 int main(int argc, char *argv[], char **env)
 {
 	pid_t child;
 	int fd = 0;
 	int cmp = 0;
+	int statusPid = 0;
 	char *lineArg;
 	char *pathF;
 	ssize_t carac;
@@ -25,16 +32,16 @@ int main(int argc, char *argv[], char **env)
 			{
 				if (fd != 0)
 				{
-					write(1,"> ", 2);
+					write(1, "> ", 2);
 				}
 				lineArg = checkLine(&carac);
 				if (carac == EOF)
 				{
 					free(lineArg);
-					write(1,"\n", 2);
+					write(1, "\n", 2);
 					exit(3);
 				}
-				if (lineArg == "\n")
+				if (*lineArg == "\n")
 				{
 					free(lineArg);
 					return (0);
@@ -50,8 +57,34 @@ int main(int argc, char *argv[], char **env)
 						i++;
 					}
 				}
-				pathF = findPath(parse[0], *env); 
+				cmp = _strCmp(parse[0], "exit");
+				if (cmp == 0 && parse[1] == NULL)
+				{
+					free(parse);
+					free(lineArg);
+					exit(3);
+				}
+				pathF = findPath(parse[0], *env);
+				if (execve(pathF, parse, NULL) == -1)
+				{
+					free(pathF);
+					free(parse);
+					perror(argv[0]);
+					if (fd == 0)
+						exit(2);
+					return (1);
+				}
 			}
 		}
+		else
+		{
+			wait(&statusPid);
+			statusPid = WEXITSTATUS(statusPid);
+			if (statusPid == 2)
+				exit(127); /* exit for command not found in the path */
+			if (fd == 0 || statusPid == 3)
+				break;
+		}
 	}
+	return (0);
 }
