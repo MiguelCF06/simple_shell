@@ -39,13 +39,12 @@ int main(int argc, char *argv[], char **env)
 					perror(argv[0]);
 					if (fd == 0)
 						exit(2);
+					return (1);
 				}
 			}
 		}
 		else
-		{
 			checkWexit(statusPid, fd);
-		}
 	}
 	return (0);
 }
