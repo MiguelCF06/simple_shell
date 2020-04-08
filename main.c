@@ -17,48 +17,20 @@ int main(int argc, char *argv[], char **env)
 	while (1)
 	{
 		child = fork();
-		if (child == -1)
-		{
-			perror("Error: forking child");
-			return (-1);
-		}
+		checkChild(child);
 		fd = isatty(STDIN_FILENO);
 		if (child == 0)
 		{
 			if (argc == 1)
 			{
-				if (fd != 0)
-					write(1, "> ", 2);
+				checkConditionalFd(fd);
 				lineArg = checkLine(&carac);
-				if (carac == EOF)
-				{
-					free(lineArg);
-					write(1, "\n", 2);
-					exit(3);
-				}
-				if (*lineArg == '\n')
-				{
-					free(lineArg);
-					return (0);
-				}
+				checkConditionalCaracLine(carac, lineArg);
 				parse = parseString(lineArg, " \n\t\r");
 				cmp = _strCmp(parse[0], "env");
-				if (cmp == 0)
-				{
-					while (env[i] != NULL)
-					{
-						write(1, env[i], _strLen(env[i]));
-						write(1, "\n", 1);
-						i++;
-					}
-				}
+				checkCmp(cmp, env, i);
 				cmp = _strCmp(parse[0], "exit");
-				if (cmp == 0 && parse[1] == NULL)
-				{
-					free(parse);
-					free(lineArg);
-					exit(3);
-				}
+				checkIfExit(parse, lineArg, cmp);
 				pathF = findPath(parse[0], env);
 				if (execve(pathF, parse, NULL) == -1)
 				{
@@ -67,18 +39,12 @@ int main(int argc, char *argv[], char **env)
 					perror(argv[0]);
 					if (fd == 0)
 						exit(2);
-					return (1);
 				}
 			}
 		}
 		else
 		{
-			wait(&statusPid);
-			statusPid = WEXITSTATUS(statusPid);
-			if (statusPid == 2)
-				exit(127); /* exit for command not found in the path */
-			if (fd == 0 || statusPid == 3)
-				break;
+			checkWexit(statusPid, fd);
 		}
 	}
 	return (0);
