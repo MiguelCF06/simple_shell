@@ -14,5 +14,11 @@ char *checkLine(ssize_t *carac);
 char **parseString(char *lineArg, char *separator);
 char *findPath(char *parse, char **env);
 char *_getenv(char *envname, char **env);
+void checkChild(pid_t child);
+void checkConditionalFd(int fd);
+void checkConditionalCaracLine(ssize_t carac, char *lineArg);
+void checkCmp(int cmp, char **env, int i);
+void checkIfExit(char **parse, char *lineArg, int cmp);
+void checkWexit(int statusPid, int fd);
 
 #endif
