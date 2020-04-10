@@ -20,5 +20,8 @@ void checkConditionalCaracLine(ssize_t carac, char *lineArg);
 void checkCmp(int cmp, char **env, int i);
 void checkIfExit(char **parse, char *lineArg, int cmp);
 void checkWexit(int statusPid, int fd);
+void p_error(char *arg1, char *arg2, int count);
+void _print(char *string);
+char *_itoa(int count);
 
 #endif
