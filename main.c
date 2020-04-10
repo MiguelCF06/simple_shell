@@ -13,6 +13,7 @@ int main(int argc, char *argv[], char **env)
 	char *lineArg, *pathF;
 	ssize_t carac;
 	char **parse;
+	int count = 1;
 
 	while (1)
 	{
@@ -34,9 +35,9 @@ int main(int argc, char *argv[], char **env)
 				pathF = findPath(parse[0], env);
 				if (execve(pathF, parse, NULL) == -1)
 				{
+					p_error(argv[0], parse[0], count);
 					free(pathF);
 					free(parse);
-					perror(argv[0]);
 					if (fd == 0)
 						exit(2);
 					return (1);
@@ -45,6 +46,7 @@ int main(int argc, char *argv[], char **env)
 		}
 		else
 			checkWexit(statusPid, fd);
+		count++;
 	}
 	return (0);
 }
