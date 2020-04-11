@@ -38,3 +38,23 @@ Filename | Description
 **[README.md](README.md)** | General description of the Simple Shell
 **[AUTHORS](AUTHORS)** | List of the authors of this proyect
 
+## Functions
+
+Function Name | Description
+------------- | -----------
+_strLen |
+_strCmp |
+strConcat |
+checkLine |
+parseString |
+findPath |
+_getenv |
+checkChild |
+checkConditionalFd |
+checkConditionalCaracLine |
+checkCmp |
+checkIfExit |
+checkWexit |
+p_error |
+_print |
+_itoa |
