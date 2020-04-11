@@ -47,7 +47,7 @@ char *_getenv(char *envname, char **env)
 	int i = 0;
 
 	i = 0;
-	while (env[i] != '\0')
+	while (env[i] != NULL)
 	{
 		token = parseString(*(env + i), "=");
 		if (_strCmp(token[0], envname) == 0)
