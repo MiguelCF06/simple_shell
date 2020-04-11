@@ -58,3 +58,9 @@ checkWexit | Check the status of the pid is correct and wait for it, and exit
 p_error | Prints error if the command is not found
 _print | Prints strings
 _itoa | Converts a int to a string
+
+### Author
+
+Miguel Angel Cipamocha Figueredo ([MiguelCF06](https://github.com/MiguelCF06)), Juan David Suarez Wilches ([juandsuarezz](https://github.com/juandsuarezz)) at [Holberton School](https://www.holbertonschool.com/)
+
+April - 2020
