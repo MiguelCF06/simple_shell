@@ -42,19 +42,19 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-_strLen |
-_strCmp |
-strConcat |
-checkLine |
-parseString |
-findPath |
-_getenv |
-checkChild |
-checkConditionalFd |
-checkConditionalCaracLine |
-checkCmp |
-checkIfExit |
-checkWexit |
-p_error |
-_print |
-_itoa |
+_strLen | Returns the length of a string
+_strCmp | Compare two strings
+strConcat | Concatenate strings
+checkLine | Reads the input
+parseString | Tokenize and return a array of strings
+findPath | Check if the value is in the PATH
+_getenv | Get the path from a env
+checkChild | Check if the forking of child is good
+checkConditionalFd | Check if the fd is not 0
+checkConditionalCaracLine | Check the ssize_t carac and line is EOF or \n
+checkCmp | Check if the compare is 0 and write
+checkIfExit | Check if the command exit is in the prompt
+checkWexit | Check the status of the pid is correct and wait for it, and exit
+p_error | Prints error if the command is not found
+_print | Prints strings
+_itoa | Converts a int to a string
