@@ -8,10 +8,10 @@ int main(int argc, char *argv[], char **env);
 .SH DESCRIPTION
 Simple Shell is a program that takes some commands from the keyboard and gives them to the operating system to perform.
 .SH OPTIONS
-Commands that you can execute in the simple_shell (you can see the manual of each command, puts in the terminal 'man nameofcommand').
+Commands that you can execute in the simple_shell (you can see the diferent options in the manual of each command, puts in the terminal > man 'nameofcommand').
 .B Basic simple_shell Commands:
 - ls: Display the list of all the files and directories.
-- cat:
+- cat: Display the content of a file.
 - pwd: Show the current directory.
 - touch: Create file(s).
 - mkdir: Create a directory(ies).
