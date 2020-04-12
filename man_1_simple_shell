@@ -1,1 +1,13 @@
-Simple Shell Man
+.TH simple_shell "April 2020" "simple_shell man page"
+.SH NAME
+.B simple_shell
+- Executes commands
+.SH SYNOPSIS
+#include "holberton.h"
+int main(int argc, char *argv[], char **env);
+.SH DESCRIPTION
+Simple Shell is a program that takes some commands from the keyboard and gives them to the operating system to perform.
+.SH OPTIONS
+
+.SH AUTHOR
+Miguel Angel Cipamocha Figueredo, Juan David Suarez Wilches, Holberton School Cohort 11 BOG
