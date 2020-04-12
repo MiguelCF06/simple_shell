@@ -1,13 +1,31 @@
 .TH simple_shell "April 2020" "simple_shell man page"
 .SH NAME
 .B simple_shell
-- Executes commands
+- Executes commands.
 .SH SYNOPSIS
 #include "holberton.h"
 int main(int argc, char *argv[], char **env);
 .SH DESCRIPTION
 Simple Shell is a program that takes some commands from the keyboard and gives them to the operating system to perform.
 .SH OPTIONS
-
+Commands that you can execute in the simple_shell (you can see the manual of each command, puts in the terminal 'man nameofcommand').
+.B Basic simple_shell Commands:
+- ls: Display the list of all the files and directories.
+- cat:
+- pwd: Show the current directory.
+- touch: Create file(s).
+- mkdir: Create a directory(ies).
+- cp: Copy files and directories.
+- mv: Move file and directories or change the name of them.
+- rm: Remove files or directories.
+- rmdir: Delete a directory if it is empty.
+- chown: Change the owner of file:
+- chmod: Modify the access/permission of a file.
+- grep: Search for the specified text in a file.
+- sort: Sort contents of files.
+- wc: Cont the number of characters, words in a file.
+- cut: Cut a specified part of a file.
+.SH BUGS
+None known.
 .SH AUTHOR
-Miguel Angel Cipamocha Figueredo, Juan David Suarez Wilches, Holberton School Cohort 11 BOG
+Miguel Angel Cipamocha Figueredo, Juan David Suarez Wilches, Holberton School Cohort 11 BOG.
