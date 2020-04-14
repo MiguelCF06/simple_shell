@@ -9,11 +9,10 @@
 int main(int argc, char *argv[], char **env)
 {
 	pid_t child;
-	int fd = 0, cmp = 0, statusPid = 0, i = 0;
+	int fd = 0, cmp = 0, statusPid = 0, i = 0, cnt = 1;
 	char *lineArg, *pathF;
 	ssize_t carac;
 	char **parse;
-	int count = 1;
 
 	while (1)
 	{
@@ -35,7 +34,7 @@ int main(int argc, char *argv[], char **env)
 				pathF = findPath(parse[0], env);
 				if (execve(pathF, parse, NULL) == -1)
 				{
-					p_error(argv[0], parse[0], count);
+					p_error(argv[0], parse[0], cnt);
 					free(pathF);
 					free(parse);
 					if (fd == 0)
@@ -46,7 +45,7 @@ int main(int argc, char *argv[], char **env)
 		}
 		else
 			checkWexit(statusPid, fd);
-		count++;
+		cnt++;
 	}
 	return (0);
 }
