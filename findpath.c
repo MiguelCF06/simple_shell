@@ -23,7 +23,6 @@ char *findPath(char *parse, char **env)
 		if (compare == 0)
 		{
 			return (newpath);
-			break;
 		}
 		else
 		{
