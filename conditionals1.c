@@ -19,7 +19,7 @@ void checkChild(pid_t child)
 void checkConditionalFd(int fd)
 {
 	if (fd != 0)
-		write(1, "> ", 2);
+		write(1, "> ", 3);
 }
 /**
  *checkConditionalCaracLine - Check the ssize_t carac and line is EOF or \n
