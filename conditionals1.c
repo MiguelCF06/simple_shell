@@ -1,41 +1,72 @@
 #include "holberton.h"
 /**
- *checkChild - Check if the forking of child is good
- *@child: The child process
- *
+ * checkForBuiltins - checks if the command is a builtin
+ * @vars: variables
+ * Return: pointer to the function or NULL
  */
-void checkChild(pid_t child)
+void (*checkForBuiltins(vabs_st * vars))(vabs_st * vars)
 {
-	if (child == -1)
+	unsigned int i;
+	built_t check[] = {
+		{"exit", ourExit},
+		{"env", ourEnv},
+		{NULL, NULL}
+	};
+
+	for (i = 0; check[i].f != NULL; i++)
 	{
-		perror("Error: forking child");
+		if (_strcmpr(vars->av[0], check[i].name) == 0)
+			break;
 	}
+	if (check[i].f != NULL)
+		check[i].f(vars);
+	return (check[i].f);
 }
+
 /**
- *checkConditionalFd - Check if the fd is not 0
- *@fd: The file descriptor
- *
+ * ourExit - exit program
+ * @vars: variables
+ * Return: void
  */
-void checkConditionalFd(int fd)
+void ourExit(vabs_st *vars)
 {
-	if (fd != 0)
-		write(1, "> ", 2);
+	int status;
+
+	if (_strcmpr(vars->av[0], "exit") == 0 && vars->av[1] != NULL)
+	{
+		status = _atoi(vars->av[1]);
+		if (status == -1)
+		{
+			vars->status = 2;
+			print_error(vars, ": Illegal number: ");
+			_puts2(vars->av[1]);
+			_puts2("\n");
+			free(vars->commands);
+			vars->commands = NULL;
+			return;
+		}
+		vars->status = status;
+	}
+	free(vars->buffer);
+	free(vars->av);
+	free(vars->commands);
+	free_env(vars->env);
+	exit(vars->status);
 }
+
 /**
- *checkConditionalCaracLine - Check the ssize_t carac and line is EOF or \n
- *@carac: The direction of the char in the input
- *@lineArg: The input
+ * ourEnv - prints the current environment
+ * @vars: struct of variables
+ * Return: void.
  */
-void checkConditionalCaracLine(ssize_t carac, char *lineArg)
+void ourEnv(vabs_st *vars)
 {
-	if (carac == EOF)
+	unsigned int i;
+
+	for (i = 0; vars->env[i]; i++)
 	{
-		free(lineArg);
-		write(1, "\n", 2);
-		exit(3);
+		_puts(vars->env[i]);
+		_puts("\n");
 	}
-	if (*lineArg == '\n')
-	{
-		free(lineArg);
-	}
+	vars->status = 0;
 }
