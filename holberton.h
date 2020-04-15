@@ -15,7 +15,7 @@
 typedef struct builtins
 {
 	char *name;
-	void (*f)(vars_t *);
+	void (*f)(vabs_st *);
 } built_t;
 
 /**
@@ -42,7 +42,7 @@ typedef struct variables
 char *strDup(char *strDuplic);
 int _strLen(char *s);
 int _strCmp(char *s1, char *s2);
-char *strConcat(char *s1, char *s2, char *s3);
+char *strConcat(char *s1, char *s2);
 ssize_t printStdout(char *str);
 char **parseString(char *buffer, char *separator);
 char **_realloc(char **ptr, size_t *size);
