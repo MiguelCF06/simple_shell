@@ -95,7 +95,7 @@ void check_for_path(vabs_t *vars)
 			if (path_tokens == NULL)
 			{
 				vars->status = 127;
-				new_exit(vars);
+				ourExit(vars);
 			}
 		}
 		if (path == NULL || path_tokens[i] == NULL)
@@ -106,7 +106,7 @@ void check_for_path(vabs_t *vars)
 		free(path_tokens);
 	}
 	if (r == 1)
-		new_exit(vars);
+		ourExit(vars);
 }
 
 /**
@@ -126,11 +126,11 @@ int execute_cwd(vabs_t *vars)
 		{
 			child_pid = fork();
 			if (child_pid == -1)
-				print_error(vars, NULL);
+				p_error(vars, NULL);
 			if (child_pid == 0)
 			{
 				if (execve(vars->cla[0], vars->cla, vars->env) == -1)
-					print_error(vars, NULL);
+					p_error(vars, NULL);
 			}
 			else
 			{
