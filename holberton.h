@@ -53,7 +53,7 @@ void ourEnv(vabs_st *vars);
 char *findPath(char *parse, char **env);
 char **makeEnv(char **env);
 void freeEnv(char **env);
-void p_error(char *arg1, char *arg2, int count);
+void p_error(vabs_st *vars, char *errormsg);
 void _print(char *string);
 char *_itoa(int count);
 
