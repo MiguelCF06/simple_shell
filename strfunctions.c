@@ -61,7 +61,6 @@ int _strCmp(char *s1, char *s2)
  * strConcat - Concatenate strings
  * @s1: string 1
  * @s2: string 2
- * @s3: string 3
  * Return: a pointer or NULL
  */
 char *strConcat(char *s1, char *s2)
