@@ -49,10 +49,10 @@ int _strCmp(char *s1, char *s2)
 {
 	int count;
 
-	for (count = 0; s1[count] != '\0' && s2[count] != '\0'; count++)
+	for (count = 0; s1[count] == s2[count]; count++)
 	{
-		if (s1[count] != s2[count])
-			return (s1[count] - s2[count]);
+		if (s1[count] == '\0')
+			return (0);
 	}
 	return (s1[count] - s2[count]);
 }
@@ -65,37 +65,36 @@ int _strCmp(char *s1, char *s2)
  */
 char *strConcat(char *s1, char *s2)
 {
-	int i, j;
-	int tam1 = 0, tam2 = 0;
-	char *dest;
+	char *newstring;
+	unsigned int len1, len2, newlen, i, j;
 
+	len1 = 0;
+	len2 = 0;
 	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
-
-	tam1 = _strLen(s1);
-	tam2 = _strLen(s2);
-
-	dest = malloc((tam1 + tam2 + 1));
-
-	if (dest == NULL)
-	{
-		free(dest);
-		return (NULL);
-	}
+		len1 = 0;
 	else
 	{
-		for (i = 0; i < tam1; i++)
-		{
-			dest[i] = s1[i];
-		}
-		for (j = 0; j < tam2; j++)
-		{
-			dest[i + j] = s2[j];
-		}
+		for (len1 = 0; s1[len1]; len1++)
+			;
 	}
-	return (dest);
+	if (s2 == NULL)
+		len2 = 0;
+	else
+	{
+		for (len2 = 0; s2[len2]; len2++)
+			;
+	}
+	newlen = len1 + len2 + 2;
+	newstring = malloc(newlen * sizeof(char));
+	if (newstring == NULL)
+		return (NULL);
+	for (i = 0; i < len1; i++)
+		newstring[i] = s1[i];
+	newstring[i] = '/';
+	for (j = 0; j < len2; j++)
+		newstring[i + 1 + j] = s2[j];
+	newstring[len1 + len2 + 1] = '\0';
+	return (newstring);
 }
 
 /**
