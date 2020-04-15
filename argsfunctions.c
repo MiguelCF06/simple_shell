@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
  * parseString - Function that tokenize and return the array of strings
- * @buffer: What is read by the input, and will tokenize
+ * @buffer: buffer what we want tokenize
  * @separator: Separator that we want tokenize
  * Return: A pointer to pointer of chars
  */
