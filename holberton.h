@@ -57,5 +57,6 @@ void freeEnv(char **env);
 void p_error(vabs_t *vars, char *errormsg);
 void _print(char *string);
 char *_itoa(int count);
+int _atoi(char *s);
 
 #endif
