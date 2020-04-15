@@ -25,7 +25,7 @@ typedef struct variables
         char *buffer;
         size_t count;
         int status;
-} vabs_st;
+} vabs_t;
 
 /**
  * struct builtins - Structure for the builtin functions of the shell
@@ -35,7 +35,7 @@ typedef struct variables
 typedef struct builtins
 {
 	char *name;
-	void (*f)(vabs_st *);
+	void (*f)(vabs_t *);
 } built_t;
 
 char *strDup(char *strDuplic);
@@ -45,15 +45,15 @@ char *strConcat(char *s1, char *s2);
 ssize_t printStdout(char *str);
 char **parseString(char *buffer, char *separator);
 char **_realloc(char **ptr, size_t *size);
-void (*checkForBuiltins(vabs_st * vars))(vabs_st * vars);
-void ourExit(vabs_st *vars);
-void ourEnv(vabs_st *vars);
+void (*checkForBuiltins(vabs_t * vars))(vabs_t * vars);
+void ourExit(vabs_t *vars);
+void ourEnv(vabs_t *vars);
 char *find_path(char **env);
-int path_execute(char *command, vabs_st *vars);
-void check_for_path(vabs_st *vars);
+int path_execute(char *command, vabs_t *vars);
+void check_for_path(vabs_t *vars);
 char **makeEnv(char **env);
 void freeEnv(char **env);
-void p_error(vabs_st *vars, char *errormsg);
+void p_error(vabs_t *vars, char *errormsg);
 void _print(char *string);
 char *_itoa(int count);
 
