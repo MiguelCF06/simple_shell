@@ -23,7 +23,7 @@ char **_realloc(char **ptr, size_t *size)
 	}
 	*size += 10;
 	free(ptr);
-	return (new);
+	return (newMem);
 }
 
 /**
