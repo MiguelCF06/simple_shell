@@ -1,21 +1,5 @@
 #include "holberton.h"
 
-unsigned int signalFlag;
-
-/**
- * sigHandler - handles ^C signal interupt
- * @unusedVar: unused variable (required for signal function prototype)
- * Return: void
- */
-static void sigHandler(int unusedVar)
-{
-	(void) unusedVar;
-	if (signalFlag == 0)
-		printStdout("\n> ");
-	else
-		printStdout("\n");
-}
-
 /**
  * main - main function for the shell
  * @argc: number of arguments passed to main
@@ -31,15 +15,12 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 
 	vars.argv = argv;
 	vars.env = make_env(environment);
-	signal(SIGINT, sigHandler);
 	if (!isatty(STDIN_FILENO))
 		pipe = 1;
 	if (pipe == 0)
 		write(1, "> ", 2);
-	signalFlag = 0;
 	while (getline(&(vars.buffer), &lenBuffer, stdin) != -1)
 	{
-		signalFlag = 1;
 		vars.count++;
 		vars.commands = parseString(vars.buffer, ";");
 		for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
@@ -52,7 +33,6 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		}
 		free(vars.buffer);
 		free(vars.commands);
-		signalFlag = 0;
 		if (pipe == 0)
 			write(1, "> ", 2);
 		vars.buffer = NULL;
