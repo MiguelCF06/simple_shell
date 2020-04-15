@@ -15,7 +15,7 @@ void (*checkForBuiltins(vabs_t * vars))(vabs_t * vars)
 
 	for (i = 0; check[i].f != NULL; i++)
 	{
-		if (_strcmpr(vars->cla[0], check[i].name) == 0)
+		if (_strCmp(vars->cla[0], check[i].name) == 0)
 			break;
 	}
 	if (check[i].f != NULL)
@@ -32,13 +32,13 @@ void ourExit(vabs_t *vars)
 {
 	int status;
 
-	if (_strcmpr(vars->cla[0], "exit") == 0 && vars->cla[1] != NULL)
+	if (_strCmp(vars->cla[0], "exit") == 0 && vars->cla[1] != NULL)
 	{
 		status = _atoi(vars->cla[1]);
 		if (status == -1)
 		{
 			vars->status = 2;
-			print_error(vars, ": Illegal number: ");
+			p_error(vars, ": Illegal number: ");
 			_puts2(vars->cla[1]);
 			_puts2("\n");
 			free(vars->commands);
@@ -50,7 +50,7 @@ void ourExit(vabs_t *vars)
 	free(vars->buffer);
 	free(vars->cla);
 	free(vars->commands);
-	free_env(vars->env);
+	freeEnv(vars->env);
 	exit(vars->status);
 }
 
@@ -59,14 +59,14 @@ void ourExit(vabs_t *vars)
  * @vars: struct of variables
  * Return: void.
  */
-void ourEnv(vabs_st *vars)
+void ourEnv(vabs_t *vars)
 {
 	unsigned int i;
 
 	for (i = 0; vars->env[i]; i++)
 	{
-		_puts(vars->env[i]);
-		_puts("\n");
+		printStdout(vars->env[i]);
+		printStdout("\n");
 	}
 	vars->status = 0;
 }
