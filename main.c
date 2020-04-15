@@ -1,6 +1,5 @@
 #include "holberton.h"
 
-/* global variable for ^C handling */
 unsigned int signalFlag;
 
 /**
