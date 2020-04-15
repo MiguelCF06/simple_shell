@@ -11,7 +11,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	size_t lenBuffer = 0;
 	unsigned int isPipe = 0, i;
-	vabs_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
+	vabs_t vars = {NULL, NULL, NULL, NULL, NULL, 0, 0};
 
 	vars.argv = argv;
 	vars.env = makeEnv(environment);
