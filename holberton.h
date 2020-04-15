@@ -6,18 +6,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <string.h>
-
-/**
- * struct builtins - Structure for the builtin functions of the shell
- * @name: Builtin command
- * @f: function for the builtin
- */
-typedef struct builtins
-{
-	char *name;
-	void (*f)(vabs_st *);
-} built_t;
-
 /**
  * struct variables - Variables
  * @cla: command line arguments
@@ -30,14 +18,25 @@ typedef struct builtins
  */
 typedef struct variables
 {
-	char **cla;
-	char **env;
-	char **argv;
-	char **commands;
-	char *buffer;
-	size_t count;
-	int status;
+        char **cla;
+        char **env;
+        char **argv;
+        char **commands;
+        char *buffer;
+        size_t count;
+        int status;
 } vabs_st;
+
+/**
+ * struct builtins - Structure for the builtin functions of the shell
+ * @name: Builtin command
+ * @f: function for the builtin
+ */
+typedef struct builtins
+{
+	char *name;
+	void (*f)(vabs_st *);
+} built_t;
 
 char *strDup(char *strDuplic);
 int _strLen(char *s);
