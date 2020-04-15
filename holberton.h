@@ -58,5 +58,7 @@ void p_error(vabs_t *vars, char *errormsg);
 void _print(char *string);
 char *_itoa(int count);
 int _atoi(char *s);
+int execute_cwd(vabs_t *vars);
+int check_for_dir(char *str);
 
 #endif
