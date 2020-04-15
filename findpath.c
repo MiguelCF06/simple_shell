@@ -16,7 +16,7 @@ int path_execute(char *command, vabs_t *vars)
 			p_error(vars, NULL);
 		if (child_pid == 0)
 		{
-			if (execve(command, vars->cla, vars->cla) == -1)
+			if (execve(command, vars->cla, vars->env) == -1)
 				p_error(vars, NULL);
 		}
 		else
@@ -58,7 +58,6 @@ char *find_path(char **env)
 			break;
 	}
 	return (env[i]);
-
 }
 
 /**
