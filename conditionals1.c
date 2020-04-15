@@ -4,7 +4,7 @@
  * @vars: variables
  * Return: pointer to the function or NULL
  */
-void (*checkForBuiltins(vabs_st * vars))(vabs_st * vars)
+void (*checkForBuiltins(vabs_t * vars))(vabs_t * vars)
 {
 	unsigned int i;
 	built_t check[] = {
@@ -15,7 +15,7 @@ void (*checkForBuiltins(vabs_st * vars))(vabs_st * vars)
 
 	for (i = 0; check[i].f != NULL; i++)
 	{
-		if (_strcmpr(vars->av[0], check[i].name) == 0)
+		if (_strcmpr(vars->cla[0], check[i].name) == 0)
 			break;
 	}
 	if (check[i].f != NULL)
@@ -28,18 +28,18 @@ void (*checkForBuiltins(vabs_st * vars))(vabs_st * vars)
  * @vars: variables
  * Return: void
  */
-void ourExit(vabs_st *vars)
+void ourExit(vabs_t *vars)
 {
 	int status;
 
-	if (_strcmpr(vars->av[0], "exit") == 0 && vars->av[1] != NULL)
+	if (_strcmpr(vars->cla[0], "exit") == 0 && vars->cla[1] != NULL)
 	{
-		status = _atoi(vars->av[1]);
+		status = _atoi(vars->cla[1]);
 		if (status == -1)
 		{
 			vars->status = 2;
 			print_error(vars, ": Illegal number: ");
-			_puts2(vars->av[1]);
+			_puts2(vars->cla[1]);
 			_puts2("\n");
 			free(vars->commands);
 			vars->commands = NULL;
@@ -48,7 +48,7 @@ void ourExit(vabs_st *vars)
 		vars->status = status;
 	}
 	free(vars->buffer);
-	free(vars->av);
+	free(vars->cla);
 	free(vars->commands);
 	free_env(vars->env);
 	exit(vars->status);
