@@ -5,7 +5,7 @@
  * @errormsg: number of proccess
 **/
 
-void p_error(vabs_st *vars, char *errormsg)
+void p_error(vabs_t *vars, char *errormsg)
 {
 	char *numstr;
 
