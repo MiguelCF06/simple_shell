@@ -35,7 +35,7 @@ char **_realloc(char **ptr, size_t *size)
 char **makeEnv(char **env)
 {
 	char **newEnv = NULL;
-	sise_t i;
+	size_t i;
 
 	for (i = 0; env[i] != NULL; i++)
 		;
