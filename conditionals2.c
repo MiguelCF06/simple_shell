@@ -39,9 +39,10 @@ char **makeEnv(char **env)
 
 	for (i = 0; env[i] != NULL; i++)
 		;
-	newEnv = malloc(sizeof(char *) * i + 1);
+	newEnv = malloc(sizeof(char *) * (i + 1));
 	if (newEnv == NULL)
 	{
+		free(newEnv);
 		perror("Fatal Error");
 		exit(1);
 	}
