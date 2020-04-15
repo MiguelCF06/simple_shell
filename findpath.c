@@ -5,7 +5,7 @@
  * @vars: struct of variables
  * Return: 0 if succcess, 1 if failure
  */
-int path_execute(char *command, vabs_st *vars)
+int path_execute(char *command, vabs_t *vars)
 {
 	pid_t child_pid;
 
@@ -65,7 +65,7 @@ char *find_path(char **env)
  * check_for_path - checks if the command is in the PATH
  * @vars: variables
  */
-void check_for_path(vabs_st *vars)
+void check_for_path(vabs_t *vars)
 {
 	char *path, *path_dup = NULL, *check = NULL;
 	unsigned int i = 0, r = 0;
@@ -79,11 +79,11 @@ void check_for_path(vabs_st *vars)
 		path = find_path(vars->env);
 		if (path != NULL)
 		{
-			path_dup = _strdup(path + 5);
+			path_dup = strDup(path + 5);
 			path_tokens = parseString(path_dup, ":");
 			for (i = 0; path_tokens && path_tokens[i]; i++, free(check))
 			{
-				check = _strcat(path_tokens[i], vars->cla[0]);
+				check = strConcat(path_tokens[i], vars->cla[0]);
 				if (stat(check, &buf) == 0)
 				{
 					r = path_execute(check, vars);
@@ -96,3 +96,7 @@ void check_for_path(vabs_st *vars)
 			{
 				vars->status = 127;
 
+			}
+		}
+	}
+}
