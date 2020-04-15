@@ -1,51 +1,66 @@
 #include "holberton.h"
-/**
- * main - Entry point
- * @argc: argument count
- * @argv: Argument vector contains the arguments passed to the program
- * @env: Environment variable
- * Return: Always 0 (Success) and exit
- */
-int main(int argc, char *argv[], char **env)
-{
-	pid_t child;
-	int fd = 0, cmp = 0, statusPid = 0, i = 0, cnt = 1;
-	char *lineArg, *pathF;
-	ssize_t carac;
-	char **parse;
 
-	while (1)
+/* global variable for ^C handling */
+unsigned int signalFlag;
+
+/**
+ * sigHandler - handles ^C signal interupt
+ * @unusedVar: unused variable (required for signal function prototype)
+ * Return: void
+ */
+static void sigHandler(int unusedVar)
+{
+	(void) unusedVar;
+	if (signalFlag == 0)
+		printStdout("\n> ");
+	else
+		printStdout("\n");
+}
+
+/**
+ * main - main function for the shell
+ * @argc: number of arguments passed to main
+ * @argv: array of arguments passed to main
+ * @environment: array of environment variables
+ * Return: 0 or exit status, or ?
+ */
+int main(int argc __attribute__((unused)), char **argv, char **environment)
+{
+	size_t lenBuffer = 0;
+	unsigned int pipe = 0, i;
+	vabs_st vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
+
+	vars.argv = argv;
+	vars.env = make_env(environment);
+	signal(SIGINT, sigHandler);
+	if (!isatty(STDIN_FILENO))
+		pipe = 1;
+	if (pipe == 0)
+		write(1, "> ", 2);
+	signalFlag = 0;
+	while (getline(&(vars.buffer), &lenBuffer, stdin) != -1)
 	{
-		child = fork();
-		checkChild(child);
-		fd = isatty(STDIN_FILENO);
-		if (child == 0)
+		signalFlag = 1;
+		vars.count++;
+		vars.commands = parseString(vars.buffer, ";");
+		for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
 		{
-			if (argc == 1)
-			{
-				checkConditionalFd(fd);
-				lineArg = checkLine(&carac);
-				checkConditionalCaracLine(carac, lineArg);
-				parse = parseString(lineArg, " \n\t\r");
-				cmp = _strCmp(parse[0], "env");
-				checkCmp(cmp, env, i);
-				cmp = _strCmp(parse[0], "exit");
-				checkIfExit(parse, lineArg, cmp);
-				pathF = findPath(parse[0], env);
-				if (execve(pathF, parse, NULL) == -1)
-				{
-					p_error(argv[0], parse[0], cnt);
-					free(pathF);
-					free(parse);
-					if (fd == 0)
-						exit(2);
-					return (1);
-				}
-			}
+			vars.cla = tokenize(vars.commands[i], "\n \t\r");
+			if (vars.cla && vars.cla[0])
+				if (check_for_builtins(&vars) == NULL)
+					check_for_path(&vars);
+			free(vars.cla);
 		}
-		else
-			checkWexit(statusPid, fd);
-		cnt++;
+		free(vars.buffer);
+		free(vars.commands);
+		signalFlag = 0;
+		if (pipe == 0)
+			write(1, "> ", 2);
+		vars.buffer = NULL;
 	}
-	return (0);
+	if (pipe == 0)
+		printStdout("\n");
+	freeEnv(vars.env);
+	free(vars.buffer);
+	exit(vars.status);
 }
