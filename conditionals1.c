@@ -4,7 +4,7 @@
  * @vars: variables
  * Return: pointer to the function or NULL
  */
-void (*checkForBuiltins(vabs_t * vars))(vabs_t * vars)
+void (*checkForBuiltins(vabs_t *vars))(vabs_t *vars)
 {
 	unsigned int i;
 	built_t check[] = {
