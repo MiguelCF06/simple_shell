@@ -13,11 +13,11 @@ int path_execute(char *command, vabs_st *vars)
 	{
 		child_pid = fork();
 		if (child_pid == -1)
-			print_error(vars, NULL);
+			p_error(vars, NULL);
 		if (child_pid == 0)
 		{
-			if (execve(command, vars->av, vars->env) == -1)
-				print_error(vars, NULL);
+			if (execve(command, vars->cla, vars->cla) == -1)
+				p_error(vars, NULL);
 		}
 		else
 		{
@@ -33,7 +33,7 @@ int path_execute(char *command, vabs_st *vars)
 	}
 	else
 	{
-		print_error(vars, ": Permission denied\n");
+		p_error(vars, ": Permission denied\n");
 		vars->status = 126;
 	}
 	return (0);
@@ -72,7 +72,7 @@ void check_for_path(vabs_st *vars)
 	char **path_tokens;
 	struct stat buf;
 
-	if (check_for_dir(vars->av[0]))
+	if (check_for_dir(vars->cla[0]))
 		r = execute_cwd(vars);
 	else
 	{
@@ -80,10 +80,10 @@ void check_for_path(vabs_st *vars)
 		if (path != NULL)
 		{
 			path_dup = _strdup(path + 5);
-			path_tokens = tokenize(path_dup, ":");
+			path_tokens = parseString(path_dup, ":");
 			for (i = 0; path_tokens && path_tokens[i]; i++, free(check))
 			{
-				check = _strcat(path_tokens[i], vars->av[0]);
+				check = _strcat(path_tokens[i], vars->cla[0]);
 				if (stat(check, &buf) == 0)
 				{
 					r = path_execute(check, vars);
