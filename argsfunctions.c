@@ -18,7 +18,7 @@ char **parseString(char *buffer, char *separator)
 		perror("Fatal Error");
 		return (NULL);
 	}
-	while ((tokens[i] = new_strtok(buffer, separator)) != NULL)
+	while ((tokens[i] = strtok(buffer, separator)) != NULL)
 	{
 		i++;
 		if (i == mcount)
