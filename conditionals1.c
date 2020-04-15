@@ -39,8 +39,8 @@ void ourExit(vabs_t *vars)
 		{
 			vars->status = 2;
 			p_error(vars, ": Illegal number: ");
-			_puts2(vars->cla[1]);
-			_puts2("\n");
+			_print(vars->cla[1]);
+			_print("\n");
 			free(vars->commands);
 			vars->commands = NULL;
 			return;
