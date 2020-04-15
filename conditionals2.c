@@ -1,48 +1,69 @@
 #include "holberton.h"
+
 /**
- *checkCmp - Check if the compare is 0 and write
- *@cmp: The compare value
- *@env: Environment variable
- *@i: iterator
+ * _realloc - reallocates a pointer to double the space
+ * @ptr: pointer to the old array
+ * @size: pointer to number of elements in the old array
+ * Return: pointer to the new array
  */
-void checkCmp(int cmp, char **env, int i)
+char **_realloc(char **ptr, size_t *size)
 {
-	if (cmp == 0)
+	char **newMem;
+	size_t i;
+
+	newMem = malloc(sizeof(char *) * ((*size) + 10));
+	if (newMem == NULL)
 	{
-		while (env[i] != NULL)
-		{
-			write(1, env[i], _strLen(env[i]));
-			write(1, "\n", 1);
-			i++;
-		}
+		free(ptr);
+		return (NULL);
 	}
-}
-/**
- *checkIfExit - Check if the command exit is in the prompt
- *@parse: The string parsed
- *@lineArg: The input
- *@cmp: Value of the compare
- */
-void checkIfExit(char **parse, char *lineArg, int cmp)
-{
-	if (cmp == 0 && parse[1] == NULL)
+	for (i = 0; i < (*size); i++)
 	{
-		free(parse);
-		free(lineArg);
-		exit(3);
+		newMem[i] = ptr[i];
 	}
+	*size += 10;
+	free(ptr);
+	return (new);
 }
+
 /**
- *checkWexit - Check the status of the pid is correct and wait for it, and exit
- *@statusPid: The status of the process id
- *@fd: File descriptor
+ * makeEnv - make the shell environment from the environment passed to main
+ * @env: environment passed to main
+ *
+ * Return: pointer to the new environment
  */
-void checkWexit(int statusPid, int fd)
+char **makeEnv(char **env)
 {
-	wait(&statusPid);
-	statusPid = WEXITSTATUS(statusPid);
-	if (statusPid == 2)
-		exit(127); /* exit for command not found in the path */
-	if (fd == 0 || statusPid == 3)
-		exit(3);
+	char **newEnv = NULL;
+	sise_t i;
+
+	for (i = 0; env[i] != NULL; i++)
+		;
+	newEnv = malloc(sizeof(char *) * i + 1);
+	if (newEnv == NULL)
+	{
+		perror("Fatal Error");
+		exit(1);
+	}
+	for (i = 0; env[i] != NULL; i++)
+	{
+		newEnv[i] = strDup(env[i]);
+	}
+	newEnv[i] = NULL;
+	return (newEnv);
+}
+
+/**
+ * freeEnv - free the shell's environment
+ * @env: shell's environment
+ *
+ * Return: void
+ */
+void freeEnv(char **env)
+{
+	int i;
+
+	for (i = 0; env[i] != NULL; i++)
+		free(env[i]);
+	free(env);
 }
