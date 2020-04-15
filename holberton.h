@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /**
  * struct variables - Variables
