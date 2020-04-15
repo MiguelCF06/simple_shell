@@ -10,14 +10,14 @@
 int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	size_t lenBuffer = 0;
-	unsigned int pipe = 0, i;
+	unsigned int isPipe = 0, i;
 	vabs_st vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
 
 	vars.argv = argv;
 	vars.env = make_env(environment);
 	if (!isatty(STDIN_FILENO))
-		pipe = 1;
-	if (pipe == 0)
+		isPipe = 1;
+	if (isPipe == 0)
 		write(1, "> ", 2);
 	while (getline(&(vars.buffer), &lenBuffer, stdin) != -1)
 	{
@@ -33,11 +33,11 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		}
 		free(vars.buffer);
 		free(vars.commands);
-		if (pipe == 0)
+		if (isPipe == 0)
 			write(1, "> ", 2);
 		vars.buffer = NULL;
 	}
-	if (pipe == 0)
+	if (isPipe == 0)
 		printStdout("\n");
 	freeEnv(vars.env);
 	free(vars.buffer);
