@@ -1,6 +1,30 @@
 #include "holberton.h"
 
 /**
+ * strDup - returns pointer to new mem alloc space which contains copy
+ * @strDuplic: string to be duplicated
+ * Return: a pointer to the new duplicated string
+ */
+char *strDup(char *strDuplic)
+{
+	char *copy;
+
+	int len, i;
+
+	if (strDuplic == 0)
+		return (NULL);
+
+	for (len = 0; strDuplic[len]; len++)
+		;
+	copy = malloc((len + 1) * sizeof(char));
+
+	for (i = 0; i <= len; i++)
+		copy[i] = strDuplic[i];
+
+	return (copy);
+}
+
+/**
  * _strLen - Function that returns the length of a string.
  * @s: Char as string
  * Return: Always 0.
@@ -50,13 +74,11 @@ char *strConcat(char *s1, char *s2, char *s3)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	if (s3 == NULL)
-		s3 = "";
+
 	tam1 = _strLen(s1);
 	tam2 = _strLen(s2);
-	tam3 = _strLen(s3);
 
-	dest = malloc((tam1 + tam2 + tam3 + 1));
+	dest = malloc((tam1 + tam2 + 1));
 
 	if (dest == NULL)
 	{
@@ -73,10 +95,25 @@ char *strConcat(char *s1, char *s2, char *s3)
 		{
 			dest[i + j] = s2[j];
 		}
-		for (k = 0; k <= tam3; k++)
-		{
-			dest[i + j + k] = s3[k];
-		}
 	}
 	return (dest);
+}
+
+/**
+ * printStdout - writes a string to standard output
+ * @str: string to write
+ * Return: Number of chars printed or -1 on failure
+ */
+ssize_t printStdout(char *str)
+{
+	ssize_t num, len;
+
+	num = _strlen(str);
+	len = write(STDOUT_FILENO, str, num);
+	if (len != num)
+	{
+		perror("Fatal Error");
+		return (-1);
+	}
+	return (len);
 }
