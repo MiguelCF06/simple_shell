@@ -1,41 +1,36 @@
 #include "holberton.h"
 /**
- * checkLine - Function that reads the input
- * @carac: Will be a flag to identify an exit
- * Return: Will be the read line
- */
-char *checkLine(ssize_t *carac)
-{
-	char *lineArg = NULL;
-	size_t buffersize = 0;
-
-	*carac = getline(&lineArg, &buffersize, stdin);
-	return (lineArg);
-}
-/**
  * parseString - Function that tokenize and return the array of strings
- * @lineArg: What is read by the input
+ * @buffer: What is read by the input, and will tokenize
  * @separator: Separator that we want tokenize
  * Return: A pointer to pointer of chars
  */
-char **parseString(char *lineArg, char *separator)
+char **parseString(char *buffer, char *separator)
 {
-	char **token;
-	char *str;
-	int i = 0;
-	int c = 0;
+	char **tokens = NULL;
+	size_t i = 0, mcount = 10;
 
-	c = _strLen(lineArg);
-	token = malloc(sizeof(char *) * c);
-	if (token == NULL)
+	if (buffer == NULL)
 		return (NULL);
-	str = strtok(lineArg, separator);
-	while (str != NULL)
+	tokens = malloc(sizeof(char *) * mcount);
+	if (tokens == NULL)
 	{
-		token[i] = str;
-		i++;
-		str = strtok(NULL, separator);
+		perror("Fatal Error");
+		return (NULL);
 	}
-	token[i] = NULL;
-	return (token);
+	while ((tokens[i] = new_strtok(buffer, separator)) != NULL)
+	{
+		i++;
+		if (i == mcount)
+		{
+			tokens = _realloc(tokens, &mcount);
+			if (tokens == NULL)
+			{
+				perror("Fatal Error");
+				return (NULL);
+			}
+		}
+		buffer = NULL;
+	}
+	return (tokens);
 }
