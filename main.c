@@ -25,7 +25,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		vars.commands = parseString(vars.buffer, ";");
 		for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
 		{
-			vars.cla = tokenize(vars.commands[i], "\n \t\r");
+			vars.cla = parseString(vars.commands[i], "\n \t\r");
 			if (vars.cla && vars.cla[0])
 				if (check_for_builtins(&vars) == NULL)
 					check_for_path(&vars);
