@@ -64,10 +64,10 @@ int _strCmp(char *s1, char *s2)
  * @s3: string 3
  * Return: a pointer or NULL
  */
-char *strConcat(char *s1, char *s2, char *s3)
+char *strConcat(char *s1, char *s2)
 {
-	int i, j, k;
-	int tam1 = 0, tam2 = 0, tam3 = 0;
+	int i, j;
+	int tam1 = 0, tam2 = 0;
 	char *dest;
 
 	if (s1 == NULL)
@@ -108,7 +108,7 @@ ssize_t printStdout(char *str)
 {
 	ssize_t num, len;
 
-	num = _strlen(str);
+	num = _strLen(str);
 	len = write(STDOUT_FILENO, str, num);
 	if (len != num)
 	{
