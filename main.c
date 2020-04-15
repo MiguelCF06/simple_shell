@@ -11,10 +11,10 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	size_t lenBuffer = 0;
 	unsigned int isPipe = 0, i;
-	vabs_st vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
+	vabs_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
 
 	vars.argv = argv;
-	vars.env = make_env(environment);
+	vars.env = makeEnv(environment);
 	if (!isatty(STDIN_FILENO))
 		isPipe = 1;
 	if (isPipe == 0)
@@ -27,7 +27,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		{
 			vars.cla = parseString(vars.commands[i], "\n \t\r");
 			if (vars.cla && vars.cla[0])
-				if (check_for_builtins(&vars) == NULL)
+				if (checkForBuiltins(&vars) == NULL)
 					check_for_path(&vars);
 			free(vars.cla);
 		}
