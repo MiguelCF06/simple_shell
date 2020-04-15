@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <string.h>
+
 /**
  * struct variables - Variables
  * @cla: command line arguments
@@ -18,13 +19,13 @@
  */
 typedef struct variables
 {
-        char **cla;
-        char **env;
-        char **argv;
-        char **commands;
-        char *buffer;
-        size_t count;
-        int status;
+	char **cla;
+	char **env;
+	char **argv;
+	char **commands;
+	char *buffer;
+	size_t count;
+	int status;
 } vabs_t;
 
 /**
@@ -45,7 +46,7 @@ char *strConcat(char *s1, char *s2);
 ssize_t printStdout(char *str);
 char **parseString(char *buffer, char *separator);
 char **_realloc(char **ptr, size_t *size);
-void (*checkForBuiltins(vabs_t * vars))(vabs_t * vars);
+void (*checkForBuiltins(vabs_t *vars))(vabs_t *vars);
 void ourExit(vabs_t *vars);
 void ourEnv(vabs_t *vars);
 char *find_path(char **env);
