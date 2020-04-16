@@ -28,11 +28,11 @@ Filename | Description
 -------- | ----------
 **[holberton.h](holberton.h)** | Header file with all the prototypes
 **[main.c](main.c)** | Main function
-**[conditionals1.c](conditionals1.c)** | Prints the prompt
-**[conditionals2.c](conditionals2.c)** | Checks the input
-**[argsfunctions.c](argsfunctions.c)** | Reads and tokenize
+**[conditionals1.c](conditionals1.c)** |
+**[conditionals2.c](conditionals2.c)** |
+**[argsfunctions.c](argsfunctions.c)** |
 **[strfunctions.c](strfunctions.c)** | String Functions
-**[findpath.c](findpath.c)** | Valid commands
+**[findpath.c](findpath.c)** |
 **[p_error.c](p_error.c)** | Prints error message
 **[man_1_simple_shell](man_1_simple_shell)** | Manual page of the Simple Shell
 **[README.md](README.md)** | General description of the Simple Shell
