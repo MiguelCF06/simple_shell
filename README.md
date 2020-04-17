@@ -64,6 +64,10 @@ _atoi | Converts a string to an integer
 execute_cwd | Executes a command in the current directory
 check_for_dir | Check if the command is a part of a path
 
+### Documentation
+
+For display the manual page of this project pts the following command:
+'man ./man_1_simple_shell' 
 
 ### Authors
 
