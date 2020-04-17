@@ -42,27 +42,27 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-strDup
-_strLen
-_strCmp
-strConcat
-printStdout
-parseString
-_realloc
-checkForBuiltins
-ourExit
-ourEnv
-find_path
-path_execute
-check_for_path
-makeEnv
-freeEnv
-p_error
-_print
-_itoa
-_atoi
-execute_cwd
-check_for_dir
+strDup |
+_strLen |
+_strCmp |
+strConcat |
+printStdout |
+parseString |
+_realloc |
+checkForBuiltins |
+ourExit |
+ourEnv |
+find_path |
+path_execute |
+check_for_path |
+makeEnv |
+freeEnv |
+p_error |
+_print |
+_itoa |
+_atoi |
+execute_cwd |
+check_for_dir |
 
 
 ### Author
