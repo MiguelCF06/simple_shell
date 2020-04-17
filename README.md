@@ -67,7 +67,7 @@ check_for_dir | Check if the command is a part of a path
 ### Documentation
 
 For display the manual page of this project pts the following command:
-'man ./man_1_simple_shell' 
+$ `man ./man_1_simple_shell` 
 
 ### Authors
 
