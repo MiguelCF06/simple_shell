@@ -42,14 +42,14 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-_strLen | Returns the length of a string
-_strCmp | Compare two strings
-strConcat | Concatenate strings
-checkLine | Reads the input
-parseString | Tokenize and return a array of strings
-findPath | Check if the value is in the PATH
-_getenv | Get the path from a env
-checkChild | Check if the forking of child is good
+_strLen |
+_strCmp |
+strConcat |
+checkLine |
+parseString |
+findPath |
+_getenv |
+checkChild |
 checkConditionalFd |
 checkConditionalCaracLine |
 checkCmp |
