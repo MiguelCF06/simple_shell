@@ -28,11 +28,11 @@ Filename | Description
 -------- | ----------
 **[holberton.h](holberton.h)** | Header file with all the prototypes
 **[main.c](main.c)** | Main function
-**[conditionals1.c](conditionals1.c)** |
-**[conditionals2.c](conditionals2.c)** |
-**[argsfunctions.c](argsfunctions.c)** |
+**[conditionals1.c](conditionals1.c)** | Exit and env functions
+**[conditionals2.c](conditionals2.c)** | Make and free the env
+**[argsfunctions.c](argsfunctions.c)** | Tokenize
 **[strfunctions.c](strfunctions.c)** | String Functions
-**[findpath.c](findpath.c)** |
+**[findpath.c](findpath.c)** | Execute commands in the path
 **[p_error.c](p_error.c)** | Prints error message
 **[man_1_simple_shell](man_1_simple_shell)** | Manual page of the Simple Shell
 **[README.md](README.md)** | General description of the Simple Shell
