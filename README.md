@@ -65,7 +65,7 @@ execute_cwd | Executes a command in the current directory
 check_for_dir | Check if the command is a part of a path
 
 
-### Author
+### Authors
 
 * Miguel Angel Cipamocha Figueredo ([MiguelCF06](https://github.com/MiguelCF06))
 * Juan David Suarez Wilches ([juandsuarezz](https://github.com/juandsuarezz))
