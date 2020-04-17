@@ -42,27 +42,27 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-char *strDup(char *strDuplic);
-int _strLen(char *s);
-int _strCmp(char *s1, char *s2);
-char *strConcat(char *s1, char *s2);
-ssize_t printStdout(char *str);
-char **parseString(char *buffer, char *separator);
-char **_realloc(char **ptr, size_t *size);
-void (*checkForBuiltins(vabs_t *vars))(vabs_t *vars);
-void ourExit(vabs_t *vars);
-void ourEnv(vabs_t *vars);
-char *find_path(char **env);
-int path_execute(char *command, vabs_t *vars);
-void check_for_path(vabs_t *vars);
-char **makeEnv(char **env);
-void freeEnv(char **env);
-void p_error(vabs_t *vars, char *errormsg);
-void _print(char *string);
-char *_itoa(int count);
-int _atoi(char *s);
-int execute_cwd(vabs_t *vars);
-int check_for_dir(char *str);
+strDup
+_strLen
+_strCmp
+strConcat
+printStdout
+parseString
+_realloc
+checkForBuiltins
+ourExit
+ourEnv
+find_path
+path_execute
+check_for_path
+makeEnv
+freeEnv
+p_error
+_print
+_itoa
+_atoi
+execute_cwd
+check_for_dir
 
 
 ### Author
