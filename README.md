@@ -42,27 +42,27 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-strDup |
+strDup | 
 _strLen |
 _strCmp |
 strConcat |
 printStdout |
-parseString |
+parseString | Tokenize and returns an array of strings
 _realloc |
-checkForBuiltins |
-ourExit |
-ourEnv |
-find_path |
-path_execute |
-check_for_path |
-makeEnv |
+checkForBuiltins | Check if a command is a builtin
+ourExit | Exit the program
+ourEnv | Prints the current environment
+find_path | Find a PATH Variable
+path_execute | Executes a command in the path
+check_for_path | Chacks if the command is in the PATH
+makeEnv | 
 freeEnv |
 p_error |
 _print |
 _itoa |
-_atoi |
-execute_cwd |
-check_for_dir |
+_atoi | Converts string to integer
+execute_cwd | Executes a command in the current directory
+check_for_dir | Check if the command is a part of a path
 
 
 ### Author
