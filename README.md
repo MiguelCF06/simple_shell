@@ -42,25 +42,25 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-strDup | 
-_strLen |
-_strCmp |
-strConcat |
-printStdout |
+strDup | Returns a pointer to new memory allocation Space
+_strLen | Returns the length of a string
+_strCmp | Compare two strings
+strConcat | Concatenate two strings
+printStdout | Writes a string to standar output
 parseString | Tokenize and returns an array of strings
-_realloc |
+_realloc | Reallocate a pointer to double the space
 checkForBuiltins | Check if a command is a builtin
 ourExit | Exit the program
 ourEnv | Prints the current environment
 find_path | Find a PATH Variable
 path_execute | Executes a command in the path
 check_for_path | Chacks if the command is in the PATH
-makeEnv | 
-freeEnv |
-p_error |
-_print |
-_itoa |
-_atoi | Converts string to integer
+makeEnv | Make the shell env from the env passed to main
+freeEnv | Free the env of the shell
+p_error | Prints the error messages
+_print | Prints a string
+_itoa | Converts an integer to a string
+_atoi | Converts a string to an integer
 execute_cwd | Executes a command in the current directory
 check_for_dir | Check if the command is a part of a path
 
