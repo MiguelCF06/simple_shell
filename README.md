@@ -67,6 +67,9 @@ check_for_dir | Check if the command is a part of a path
 
 ### Author
 
-Miguel Angel Cipamocha Figueredo ([MiguelCF06](https://github.com/MiguelCF06)), Juan David Suarez Wilches ([juandsuarezz](https://github.com/juandsuarezz)) at [Holberton School](https://www.holbertonschool.com/)
+* Miguel Angel Cipamocha Figueredo ([MiguelCF06](https://github.com/MiguelCF06))
+* Juan David Suarez Wilches ([juandsuarezz](https://github.com/juandsuarezz))
+
+At [Holberton School](https://www.holbertonschool.com/)
 
 April - 2020
