@@ -42,21 +42,6 @@ Filename | Description
 
 Function Name | Description
 ------------- | -----------
-_strLen |
-_strCmp |
-strConcat |
-checkLine |
-parseString |
-findPath |
-_getenv |
-checkChild |
-checkConditionalFd |
-checkConditionalCaracLine |
-checkCmp |
-checkIfExit |
-checkWexit |
-p_error |
-_print |
 _itoa |
 
 ### Author
